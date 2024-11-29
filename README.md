@@ -1,66 +1,209 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Electricity Billing System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup Instructions](#setup-instructions)
+- [API Documentation](#api-documentation)
+  - [User Registration](#user-registration)
+  - [User Login](#user-login)
+  - [Fetch Providers](#fetch-providers)
+  - [Make Payment](#make-payment)
+  - [Fetch Payment History](#fetch-payment-history)
+- [Test Account Credentials](#test-account-credentials)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact Information](#contact-information)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The Electricity Billing System is a web-based application that allows users to register, login, view available electricity providers, and make bill payments. The system also provides users with a history of their transactions, ensuring a seamless and efficient billing process.
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **User Registration and Authentication**: Secure user authentication using Laravel Sanctum.
+- **List of Electricity Providers**: Fetch and display a list of available electricity providers.
+- **Bill Payment System**: Users can make payments to their selected providers.
+- **Payment History**: Users can view their payment history.
+- **Input Validation and Security**: Ensuring data integrity and security.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Technologies Used
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 10.x
+- **Database**: MySQL or SQLite
+- **Authentication**: Laravel Sanctum
+- **Environment**: PHP 8.x, Composer
+- **API Testing**: Postman
 
-## Laravel Sponsors
+## Setup Instructions
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Prerequisites
 
-### Premium Partners
+- PHP 8.x or higher
+- Composer
+- MySQL or SQLite
+- Laravel 10.x
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Installation
 
-## Contributing
+1. **Clone the Repository:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   git clone https://github.com/your_github_username/electricity-billing-system.git
+   cd electricity-billing-system
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+   Install Dependencies:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+composer install
+Set Up the Environment:
 
-## License
+bash
+Copy code
+cp .env.example .env
+Update the .env file with your database credentials.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Generate Application Key:
+
+
+php artisan key:generate
+Set Up the Database:
+
+php artisan migrate --seed
+Run the Development Server:
+
+
+php artisan serve
+API Documentation
+User Registration
+Endpoint: POST /api/register
+
+Request Body:
+
+json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "password"
+}
+Response:
+
+json
+{
+  "message": "Registration successful",
+  "token": "your_access_token"
+}
+User Login
+Endpoint: POST /api/login
+
+Request Body:
+
+json
+{
+  "email": "john.doe@example.com",
+  "password": "password"
+}
+Response:
+
+json
+Copy code
+{
+  "message": "Login successful",
+  "token": "your_access_token"
+}
+Fetch Providers
+Endpoint: GET /api/providers
+
+Response:
+
+json
+[
+  {
+    "id": 1,
+    "name": "Provider One",
+    "logo_url": "https://via.placeholder.com/150",
+    "description": "Description for Provider One"
+  },
+  {
+    "id": 2,
+    "name": "Provider Two",
+    "logo_url": "https://via.placeholder.com/150",
+    "description": "Description for Provider Two"
+  },
+  {
+    "id": 3,
+    "name": "Provider Three",
+    "logo_url": "https://via.placeholder.com/150",
+    "description": "Description for Provider Three"
+  }
+]
+Make Payment
+Endpoint: POST /api/payments
+
+Request Body:
+
+json
+{
+  "provider_id": 1,
+  "meter_number": "1234567890",
+  "amount": 100
+}
+Response:
+
+json
+{
+  "message": "Payment successful",
+  "transaction": {
+    "id": 1,
+    "user_id": 1,
+    "provider_id": 1,
+    "meter_number": "1234567890",
+    "amount": 100,
+    "created_at": "2024-11-29T12:34:56.000000Z"
+  }
+}
+Fetch Payment History
+Endpoint: GET /api/payments
+
+Response:
+
+json
+{
+  "data": [
+    {
+      "id": 1,
+      "provider_id": 1,
+      "amount": 100,
+      "created_at": "2024-11-29T12:34:56.000000Z"
+    },
+    {
+      "id": 2,
+      "provider_id": 2,
+      "amount": 50,
+      "created_at": "2024-11-30T08:22:11.000000Z"
+    }
+  ],
+  "links": {
+    "first": "http://localhost/api/payments?page=1",
+    "last": "http://localhost/api/payments?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "per_page": 15,
+    "to": 2,
+    "total": 2
+  }
+}
+Test Account Credentials
+For testing purposes, use the following credentials:
+
+Email: testuser@example.com
+Password: password
